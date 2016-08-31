@@ -1,0 +1,46 @@
+<!-- begin #sidebar -->
+<div id="sidebar" class="sidebar">
+    <!-- begin sidebar scrollbar -->
+    <div data-scrollbar="true" data-height="100%">
+        <!-- begin sidebar user -->
+        <ul class="nav">
+            <li class="nav-profile">
+                <div class="image">
+                    <a href="javascript:;"><img src="/assets/img/user-13.jpg" alt="" /></a>
+                </div>
+                <div class="info">
+                    Sean Ngu
+                    <small>Front end developer</small>
+                </div>
+            </li>
+        </ul>
+        <!-- end sidebar user -->
+        <!-- begin sidebar nav -->
+        <ul class="nav">
+            <li class="nav-header">Navigation</li>
+            <li *ngFor="let state of states" [ngClass]="{'has-sub': state.submenu, 'active': stateService.includes(state.name)}">
+                <a href="javascript:;" *ngIf="state.submenu && state.submenu.length > 0">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-laptop"></i>
+                    <span>{{state.title}}</span>
+                </a>
+
+                <a uiSref="{{state.name}}"  *ngIf="!(state.submenu && state.submenu.length > 0)">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-laptop"></i>
+                    <span>{{state.title}}</span>
+                </a>
+
+                <ul class="sub-menu" *ngIf="state.submenu && state.submenu.length > 0">
+                    <li *ngFor="let childState of state.submenu" [ngClass]="{'active': stateService.is(childState.name)}">
+                        <a uiSref="{{childState.name}}">{{childState.title}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- end sidebar nav -->
+    </div>
+    <!-- end sidebar scrollbar -->
+</div>
+<div class="sidebar-bg"></div>
+<!-- end #sidebar -->
